@@ -1,70 +1,73 @@
-# Mobile Price Range Classification
+# 🥐 Bakery Sales & Inventory Analytics
 
-Bob has founded a new mobile phone company aiming to compete with industry giants like Apple and Samsung. To stay competitive, he needs an objective, data-driven approach to estimate how his mobile specifications map to selling price tiers.
-
-Using historical mobile sales data, this project builds a Machine Learning model to discover relationships between hardware specifications (e.g., RAM, battery capacity, screen resolution) and pricing brackets. Instead of predicting continuous prices, the goal is to categorize devices into four distinct price ranges:
-
-- **0**: Low Cost
-- **1**: Medium Cost
-- **2**: High Cost
-- **3**: Very High Cost
-
-**Dataset Source:** [Mobile Price Classification (Kaggle)](https://www.kaggle.com/datasets/iabhishekofficial/mobile-price-classification)
-
-## Method
-1. **Data Preparation:** 
-   - Feature columns ($X$) and target column (`price_range`, $y$) separated.
-   - Categorical and binary indicators validated against numerical hardware specs.
-2. **Train/Test Split:** 
-   - 70% Training data (`X_train`, `y_train`) to train the model.
-   - 30% Testing data (`X_test`, `y_test`) to evaluate unseen generalization.
-3. **Model Selection:** 
-   - **Random Forest Classifier**
-
-## Results
-### Model Performance
-Overall Test Accuracy: **[e.g., 86.7%]**
-
-| Metric | Class 0 (Low) | Class 1 (Medium) | Class 2 (High) | Class 3 (Very High) | Macro Avg | Weighted Avg |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Precision** | 0.94 | 0.82 | 0.79 | 0.92 | 0.87 | 0.87 |
-| **Recall** | 0.95 | 0.82 | 0.78 | 0.91 | 0.87 | 0.87 |
-| **F1-Score** | 0.94 | 0.82 | 0.79 | 0.92 | 0.87 | 0.87 |
-| **Support** | 151 | 146 | 148 | 155 | 600 | 600 |
+An end-to-end data analysis and inventory optimization project evaluating transactional bakery data, customer purchasing behaviors, waste costs, and promotion strategies.
 
 ---
 
-### Top Feature Importances
+## 📌 Project Overview
 
-The Random Forest model identified the following specifications as the strongest drivers of price tier classification:
+Bakery and perishable retail operations face a constant trade-off between product availability and spoilage costs. This project analyzes retail transaction logs across weather patterns, customer demographics, and production batches to:
 
-| Rank | Feature | Description | Gini Importance |
-| :---: | :--- | :--- | :---: |
-| **1** | `ram` | Random Access Memory (MB) | **0.458** |
-| **2** | `battery_power` | Total energy stored by battery (mAh) | **0.074** |
-| **3** | `px_width` | Pixel resolution width | **0.059** |
-| **4** | `px_height` | Pixel resolution height | **0.058** |
-| **5** | `int_memory` | Internal Memory (GB) | **0.040** |
-| **6** | `mobile_wt` | Weight of mobile phone | **0.040** |
-| **7** | `pc` | Primary Camera megapixels | **0.031** |
-| **8** | `talk_time` | Longest battery run time on a call | **0.031** |
-| **9** | `clock_speed` | Microprocessor execution speed | **0.030** |
-| **10** | `sc_w` | Screen width (cm) | **0.030** |
-| **11** | `sc_h` | Screen height (cm) | **0.029** |
-| **12** | `fc` | Front Camera megapixels | **0.027** |
-| **13** | `m_dep` | Mobile depth (cm) | **0.025** |
-| **14** | `n_cores` | Number of processor cores | **0.024** |
-| **15** | `dual_sim` | Dual SIM support | **0.008** |
-| **16** | `wifi` | Wi-Fi connectivity | **0.007** |
-| **17** | `blue` | Bluetooth connectivity | **0.007** |
-| **18** | `touch_screen` | Touch screen presence | **0.007** |
-| **19** | `four_g` | 4G network capability | **0.007** |
-| **20** | `three_g` | 3G network capability | **0.006** |
+- Quantify sales performance and net profit across product categories.
+- Evaluate shelf-life constraints, spoilage risk, and waste cost impacts.
+- Measure the effectiveness of promotional discounts and customer loyalty programs.
+- Model recommendations for inventory stock planning and dynamic discounts.
 
-## Conclusion
+---
 
-- **Classification Precision:** The model demonstrates strong predictive performance at **86.67% accuracy**, showing particularly high separation power for extreme tiers (Class 0 at 0.94 F1-score and Class 3 at 0.92 F1-score).
-- **RAM is the Primary Deciding Factor:** With a Gini importance of **0.458**, `ram` accounts for nearly 46% of the total predictive power. Upgrading RAM is the single most effective way to justify a higher price bracket.
-- **Secondary Tier Drivers:** Battery capacity (`0.074`) and display resolution (`px_width` at `0.059` and `px_height` at `0.058`) are the subsequent major differentiators between tiers.
-- **Commoditized Baseline Features:** Connectivity features such as Dual SIM, Wi-Fi, Bluetooth, Touch Screen, 4G, and 3G each have less than a **0.008** importance score. These are industry standards expected by consumers and do not command a premium price on their own.
-- **Actionable Recommendation for Bob:** Focus production and supply chain budgets on maximizing **RAM**, followed by **battery size** and **screen resolution**, rather than investing heavily in commodity marketing features.
+## 📊 Dataset Schema
+
+The dataset comprises granular transaction-level records enriched with operational, temporal, and inventory metrics:
+
+| Category | Columns |
+| :--- | :--- |
+| **Transaction & Order** | `transaction_id`, `date`, `time`, `product`, `category`, `quantity`, `unit_price`, `selling_price`, `total_bill`, `payment_method` |
+| **Customer Profile** | `customer_id`, `customer_age`, `customer_gender`, `customer_segment`, `loyalty_member`, `customer_rating` |
+| **Discounts & Promotions** | `discount_percentage`, `discount_amount`, `promotion_applied`, `promotion_type`, `promotion_score`, `recommended_discount` |
+| **Time & Environment** | `day_of_week`, `weekend`, `season`, `festival`, `weather`, `temperature` |
+| **Store & Operations** | `store_id`, `employee_id` |
+| **Inventory & Shelf-Life** | `manufacturing_date`, `expiry_date`, `shelf_life_days`, `stock_available`, `units_produced`, `units_sold`, `unsold_units`, `expiry_risk` |
+| **Financials & Output** | `profit`, `waste_cost`, `recommended_product` |
+
+---
+
+## 🛠 Tech Stack
+
+- **Language:** Python 3.11+
+- **Data Manipulation:** Pandas, NumPy
+- **Data Visualization:** Matplotlib, Seaborn
+- **Development Environment:** Jupyter Notebook / VS Code
+
+---
+
+## 🔍 Key Analysis & Focus Areas
+
+### 1. Financial Performance & Profitability
+- **Net Profit vs. Waste Cost:** Comparison of gross margin against losses incurred from unsold inventory and expired goods (`waste_cost`).
+- **Revenue by Category:** Identification of top-performing bakery categories (e.g., Artisan Breads, Pastries, Savory Items).
+
+### 2. Spoilage & Inventory Optimization
+- **Expiry Risk Assessment:** Analysis of `shelf_life_days` against sales velocity (`units_sold` vs. `unsold_units`).
+- **Production Efficiency:** Measuring variance between `units_produced` and consumer demand across individual `store_id` locations.
+
+### 3. Customer Demographics & Behavior
+- **Segmentation:** Spending behavior across `customer_segment` (e.g., Regular, Occasional, VIP) and `loyalty_member` status.
+- **Rating Distributions:** Correlation between discount satisfaction, wait times/shelf-life freshness, and `customer_rating` (1–5).
+
+### 4. Promotion & External Factor Impacts
+- **Weather & Seasonality:** Impact of `weather`, `temperature`, `season`, and `festival` events on daily footfall and basket sizes.
+- **Discount Elasticity:** Analyzing whether higher `discount_percentage` drives net positive `profit` or merely erodes margin.
+
+---
+
+## 📁 Repository Structure
+
+```text
+├── data/
+│   └── bakery_sales_data.csv       # Raw or processed transaction dataset
+├── notebooks/
+│   └── bakery_analytics.ipynb      # Main EDA and analytics notebook
+├── assets/
+│   └── figures/                    # Exported plots and charts
+├── requirements.txt                # Python environment dependencies
+└── README.md                       # Project documentation
