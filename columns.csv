@@ -2,9 +2,9 @@ column
 transaction_id
 date
 time
-customer_id
-customer_age
-customer_gender
+cust_id
+cust_age
+cust_gender
 product
 category
 quantity
@@ -21,7 +21,7 @@ day_of_week
 weekend
 festival
 store_id
-employee_id
+emp_id
 shelf_life_days
 manufacturing_date
 expiry_date
@@ -33,8 +33,8 @@ expiry_risk
 promotion_applied
 promotion_type
 promotion_score
-customer_rating
-customer_segment
+cust_rating
+cust_segment
 loyalty_member
 profit
 waste_cost
